@@ -12,6 +12,8 @@ Todo:
 
 - Build CI/CD pipeline
 - Work on edge cases
+- Improve HTTP responses
+- Improve error handling
 - Clean up
 - Write tests
 
