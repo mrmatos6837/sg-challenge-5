@@ -2,8 +2,10 @@
   "name": "sg-challenge-5",
   "version": "1.0.0",
   "description": "",
+  "devDependencies": {
+    "serverless-offline": "^8.8.0"
+  },
   "dependencies": {
-    "express": "^4.17.1",
-    "serverless-http": "^2.7.0"
+    "dynamodb-toolbox": "^0.4.3"
   }
 }
