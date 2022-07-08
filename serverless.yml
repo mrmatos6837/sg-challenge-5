@@ -1,14 +1,24 @@
 org: mrmatos6837
 app: sg-challenges
 service: sg-challenge-5
-frameworkVersion: '3'
+frameworkVersion: "3"
+
+plugins:
+  - serverless-offline
 
 custom:
-  tableName: 'users-table-${sls:stage}'
+  tableName: "generic-table-${sls:stage}"
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs16.x
+
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+
+  httpApi:
+    cors: true
+
   iam:
     role:
       statements:
@@ -21,26 +31,63 @@ provider:
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
           Resource:
-            - Fn::GetAtt: [ UsersTable, Arn ]
+            - Fn::GetAtt: [ItemsTable, Arn]
+
   environment:
-    USERS_TABLE: ${self:custom.tableName}
+    TABLE_NAME: ${self:custom.tableName}
+    REGION: ${self:provider.region}
 
 functions:
-  api:
-    handler: handler.handler
+  create:
+    handler: src/create.handler
     events:
-      - httpApi: '*'
+      - httpApi:
+          path: /{itemType}
+          method: post
+    environment:
+      TABLE_NAME: ${self:custom.tableName}
+      REGION: ${self:provider.region}
+  list:
+    handler: src/list.handler
+    events:
+      - httpApi:
+          path: /{itemType}
+          method: get
+  read:
+    handler: src/read.handler
+    events:
+      - httpApi:
+          path: /{itemType}/{itemId}
+          method: get
+  update:
+    handler: src/update.handler
+    events:
+      - httpApi:
+          path: /{itemType}/{itemId}
+          method: put
+  delete:
+    handler: src/delete.handler
+    events:
+      - httpApi:
+          path: /{itemType}/{itemId}
+          method: delete
 
 resources:
   Resources:
-    UsersTable:
+    ItemsTable:
       Type: AWS::DynamoDB::Table
       Properties:
         AttributeDefinitions:
-          - AttributeName: userId
+          - AttributeName: pk
+            AttributeType: S
+          - AttributeName: sk
             AttributeType: S
         KeySchema:
-          - AttributeName: userId
+          - AttributeName: pk
             KeyType: HASH
-        BillingMode: PAY_PER_REQUEST
+          - AttributeName: sk
+            KeyType: RANGE
         TableName: ${self:custom.tableName}
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
