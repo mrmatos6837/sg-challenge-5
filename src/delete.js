@@ -21,6 +21,6 @@ module.exports.handler = async (event) => {
       message: "Could not create user",
       error: error.message,
     };
-    return http.serverError(returnMessage);
+    return http.error(returnMessage);
   }
 };

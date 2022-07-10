@@ -15,13 +15,13 @@ module.exports.handler = async (event) => {
     const response = await Item.get(params);
     console.log(response);
 
-    return http.success(response);
+    return http.success(response.Item);
   } catch (error) {
     console.log(error);
     const returnMessage = {
       message: "Could not create user",
       error: error.message,
     };
-    return http.serverError(returnMessage);
+    return http.error(returnMessage);
   }
 };
