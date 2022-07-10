@@ -12,7 +12,7 @@
   "scripts": {
     "deploy-dev": "serverless deploy --stage dev --verbose",
     "deploy-prod": "serverless deploy --stage prod --verbose",
-    "local": "serverless offline --stage dev --httpPort 4000",
+    "local": "serverless offline",
     "test": "jest"
   }
 }
