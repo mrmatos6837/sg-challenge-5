@@ -1,18 +1,14 @@
+const REGION = process.env.AWS_REGION ? process.env.AWS_REGION : "us-east-1";
+
 const AWS = require("aws-sdk");
-
-AWS.config.update({ region: process.env.REGION });
-
+AWS.config.update({ region: REGION });
 const DocumentClient = new AWS.DynamoDB.DocumentClient();
 
 const { Table, Entity } = require("dynamodb-toolbox");
-
-console.log("process.env.TABLE_NAME", process.env.TABLE_NAME);
-console.log("process.env.REGION", process.env.REGION);
-
 // Instantiate a table
 const GenericTable = new Table({
   // Specify table name (used by DynamoDB)
-  name: process.env.TABLE_NAME,
+  name: process.env.TABLE_NAME ? process.env.TABLE_NAME : "generic-table-dev",
 
   // Define partition and sort keys
   partitionKey: "pk",
