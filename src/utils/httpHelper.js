@@ -1,5 +1,5 @@
 const http = {
-  serverError: (error, statusCode = 500) => ({
+  error: (error, statusCode = 500) => ({
     statusCode: statusCode,
     headers: {
       "Access-Control-Allow-Origin": "*",
