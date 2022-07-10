@@ -10,8 +10,6 @@
     "dynamodb-toolbox": "^0.4.3"
   },
   "scripts": {
-    "deploy-dev": "serverless deploy --stage dev --verbose",
-    "deploy-prod": "serverless deploy --stage prod --verbose",
     "local": "serverless offline",
     "test": "jest"
   }
