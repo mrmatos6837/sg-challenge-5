@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "devDependencies": {
+    "jest": "^28.1.2",
     "serverless-offline": "^8.8.0"
   },
   "dependencies": {
     "dynamodb-toolbox": "^0.4.3"
+  },
+  "scripts": {
+    "local": "serverless offline",
+    "test": "jest"
   }
 }
