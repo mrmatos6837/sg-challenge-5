@@ -9,6 +9,9 @@ plugins:
 custom:
   tableName: "generic-table-${sls:stage}"
 
+  serverless-offline:
+    httpPort: 4000
+
 provider:
   name: aws
   runtime: nodejs16.x
@@ -38,39 +41,7 @@ provider:
     REGION: ${self:provider.region}
 
 functions:
-  create:
-    handler: src/create.handler
-    events:
-      - httpApi:
-          path: /{itemType}
-          method: post
-    environment:
-      TABLE_NAME: ${self:custom.tableName}
-      REGION: ${self:provider.region}
-  list:
-    handler: src/list.handler
-    events:
-      - httpApi:
-          path: /{itemType}
-          method: get
-  read:
-    handler: src/read.handler
-    events:
-      - httpApi:
-          path: /{itemType}/{itemId}
-          method: get
-  update:
-    handler: src/update.handler
-    events:
-      - httpApi:
-          path: /{itemType}/{itemId}
-          method: put
-  delete:
-    handler: src/delete.handler
-    events:
-      - httpApi:
-          path: /{itemType}/{itemId}
-          method: delete
+  - ${file(./src/functions.yml)}
 
 resources:
   Resources:
