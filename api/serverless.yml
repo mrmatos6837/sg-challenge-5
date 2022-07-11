@@ -12,6 +12,11 @@ custom:
   serverless-offline:
     httpPort: 4000
 
+package:
+  patterns:
+    - "!test/**"
+    - "!package.json"
+
 provider:
   name: aws
   runtime: nodejs16.x
@@ -21,11 +26,6 @@ provider:
 
   httpApi:
     cors: true
-
-  package:
-    patterns:
-      - "!test/**"
-      - "!package.json"
 
   iam:
     role:
