@@ -40,4 +40,4 @@ provider:
     REGION: ${self:provider.region}
 
 functions:
-  - ${file(./src/handlers/functions.yml)}
+  - ${file(./functions.yml)}

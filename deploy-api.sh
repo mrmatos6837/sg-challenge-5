@@ -1,2 +1,2 @@
-cd src/api
+cd api
 sls deploy --stage dev --verbose
