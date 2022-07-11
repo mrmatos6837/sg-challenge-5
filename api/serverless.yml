@@ -22,6 +22,11 @@ provider:
   httpApi:
     cors: true
 
+  package:
+    patterns:
+      - "!test/**"
+      - "!package.json"
+
   iam:
     role:
       statements:

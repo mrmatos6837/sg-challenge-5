@@ -1,5 +1,7 @@
 create:
   handler: ./src/handlers/create.handler
+  package:
+    individually: true
   events:
     - httpApi:
         path: /{itemType}
@@ -7,26 +9,35 @@ create:
   environment:
     TABLE_NAME: ${self:custom.tableName}
     REGION: ${self:provider.region}
+
 list:
   handler: ./src/handlers/list.handler
+  package:
+    individually: true
   events:
     - httpApi:
         path: /{itemType}
         method: get
 read:
   handler: ./src/handlers/read.handler
+  package:
+    individually: true
   events:
     - httpApi:
         path: /{itemType}/{itemId}
         method: get
 update:
   handler: ./src/handlers/update.handler
+  package:
+    individually: true
   events:
     - httpApi:
         path: /{itemType}/{itemId}
         method: put
 delete:
   handler: ./src/handlers/delete.handler
+  package:
+    individually: true
   events:
     - httpApi:
         path: /{itemType}/{itemId}
