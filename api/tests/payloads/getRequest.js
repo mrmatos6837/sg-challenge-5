@@ -1,7 +1,7 @@
 module.exports = {
   version: "2.0",
   routeKey: "GET /{itemType}/{itemId}",
-  rawPath: "/test/123",
+  rawPath: "/test/abc",
   rawQueryString: "",
   cookies: [],
   headers: {
@@ -18,7 +18,7 @@ module.exports = {
     domainPrefix: "offlineContext_domainPrefix",
     http: {
       method: "GET",
-      path: "/test/123",
+      path: "/test/abc",
       protocol: "HTTP/1.1",
       sourceIp: "127.0.0.1",
       userAgent: "insomnia/2022.4.2",
@@ -31,7 +31,7 @@ module.exports = {
     timeEpoch: 1657467874180,
   },
   body: null,
-  pathParameters: { itemType: "test", itemId: "123" },
+  pathParameters: { itemType: "test", itemId: "abc" },
   isBase64Encoded: false,
   stageVariables: undefined,
 };
