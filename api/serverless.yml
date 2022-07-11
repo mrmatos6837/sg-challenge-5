@@ -7,7 +7,7 @@ plugins:
   - serverless-offline
 
 custom:
-  tableName: "generic-table-${sls:stage}"
+  tableName: ${output:database.name}
 
   serverless-offline:
     httpPort: 4000
@@ -40,4 +40,4 @@ provider:
     REGION: ${self:provider.region}
 
 functions:
-  - ${file(./handlers/functions.yml)}
+  - ${file(./src/handlers/functions.yml)}

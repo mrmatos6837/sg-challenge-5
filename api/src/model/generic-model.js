@@ -9,7 +9,9 @@ const { Table, Entity } = require("dynamodb-toolbox");
 // Instantiate a table
 const GenericTable = new Table({
   // Specify table name (used by DynamoDB)
-  name: process.env.TABLE_NAME ? process.env.TABLE_NAME : "generic-table-dev",
+  name: process.env.TABLE_NAME
+    ? process.env.TABLE_NAME
+    : "sgc5-table-dev",
 
   // Define partition and sort keys
   partitionKey: "pk",

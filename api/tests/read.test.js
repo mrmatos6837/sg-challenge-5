@@ -1,7 +1,7 @@
-const { handler } = require("../src/api/handlers/read");
+const { handler } = require("../src/handlers/read");
 const getRequest = require("./payloads/getRequest");
 
-test("test GET request", async () => {
+test("GET resquest on unexistent item", async () => {
   const response = await handler(getRequest);
   const data = JSON.parse(response.body);
   console.log(data);

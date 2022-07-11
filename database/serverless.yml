@@ -37,4 +37,4 @@ outputs:
     Fn::GetAtt:
       - db
       - Arn
-  name: ${self:app}-${self:custom.tableName}
+  name: ${self:custom.tableName}
