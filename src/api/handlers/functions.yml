@@ -1,5 +1,5 @@
 create:
-  handler: src/create.handler
+  handler: ./create.handler
   events:
     - httpApi:
         path: /{itemType}
@@ -8,25 +8,25 @@ create:
     TABLE_NAME: ${self:custom.tableName}
     REGION: ${self:provider.region}
 list:
-  handler: src/list.handler
+  handler: ./list.handler
   events:
     - httpApi:
         path: /{itemType}
         method: get
 read:
-  handler: src/read.handler
+  handler: ./read.handler
   events:
     - httpApi:
         path: /{itemType}/{itemId}
         method: get
 update:
-  handler: src/update.handler
+  handler: ./update.handler
   events:
     - httpApi:
         path: /{itemType}/{itemId}
         method: put
 delete:
-  handler: src/delete.handler
+  handler: ./delete.handler
   events:
     - httpApi:
         path: /{itemType}/{itemId}

@@ -5,6 +5,7 @@ AWS.config.update({ region: REGION });
 const DocumentClient = new AWS.DynamoDB.DocumentClient();
 
 const { Table, Entity } = require("dynamodb-toolbox");
+
 // Instantiate a table
 const GenericTable = new Table({
   // Specify table name (used by DynamoDB)
@@ -25,7 +26,7 @@ const Item = new Entity({
   // Define attributes
   attributes: {
     id: { partitionKey: true }, // flag as partitionKey
-    sk: { sortKey: true }, // flag as sortKey and mark hidden
+    sk: { sortKey: true }, // flag as sortKey
     someAttribute: { type: "string" },
   },
 

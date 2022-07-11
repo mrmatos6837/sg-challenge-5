@@ -1,11 +1,10 @@
-const { http } = require("./utils/httpHelper");
-const { Item } = require("./model/generic-model");
+const { http } = require("../utils/httpHelper");
+const { Item } = require("../model/generic-model");
 
 module.exports.handler = async (event) => {
   console.log(event);
 
-  const { itemType } = event.pathParameters;
-  const { itemId } = JSON.parse(event.body);
+  const { itemType, itemId } = event.pathParameters;
 
   const params = {
     pk: String(itemType),
@@ -13,9 +12,8 @@ module.exports.handler = async (event) => {
   };
 
   try {
-    // Improvemet: check if item already exists
-    await Item.put(params);
-    const returnMessage = `Created item '${itemType}' with id '${itemId}'.`;
+    await Item.delete(params);
+    const returnMessage = `Deleted item '${itemType}' with id '${itemId}'.`;
     return http.success(returnMessage);
   } catch (error) {
     console.log(error);

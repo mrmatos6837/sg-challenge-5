@@ -1,5 +1,5 @@
-const { http } = require("./utils/httpHelper");
-const { Item } = require("./model/generic-model");
+const { http } = require("../utils/httpHelper");
+const { Item } = require("../model/generic-model");
 
 module.exports.handler = async (event) => {
   console.log(event);

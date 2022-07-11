@@ -1,6 +1,6 @@
 org: mrmatos6837
-app: sg-challenges
-service: sg-challenge-5
+app: sg-challenge-5
+service: api
 frameworkVersion: "3"
 
 plugins:
@@ -33,32 +33,11 @@ provider:
             - dynamodb:PutItem
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
-          Resource:
-            - Fn::GetAtt: [ItemsTable, Arn]
+          Resource: ${output:database.arn}
 
   environment:
     TABLE_NAME: ${self:custom.tableName}
     REGION: ${self:provider.region}
 
 functions:
-  - ${file(./src/functions.yml)}
-
-resources:
-  Resources:
-    ItemsTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        AttributeDefinitions:
-          - AttributeName: pk
-            AttributeType: S
-          - AttributeName: sk
-            AttributeType: S
-        KeySchema:
-          - AttributeName: pk
-            KeyType: HASH
-          - AttributeName: sk
-            KeyType: RANGE
-        TableName: ${self:custom.tableName}
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+  - ${file(./handlers/functions.yml)}

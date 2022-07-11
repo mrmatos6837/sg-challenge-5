@@ -1,20 +1,19 @@
-const { http } = require("./utils/httpHelper");
-const { Item } = require("./model/generic-model");
+const { http } = require("../utils/httpHelper");
+const { Item } = require("../model/generic-model");
 
 module.exports.handler = async (event) => {
   console.log(event);
 
-  const { itemType, itemId } = event.pathParameters;
-  const body = JSON.parse(event.body);
+  const { itemType } = event.pathParameters;
+  const { itemId } = JSON.parse(event.body);
 
   const params = {
     pk: String(itemType),
     sk: String(itemId),
-    ...body,
   };
 
   try {
-    // Improvemet: check if item exists before updating
+    // Improvemet: check if item already exists
     await Item.put(params);
     const returnMessage = `Created item '${itemType}' with id '${itemId}'.`;
     return http.success(returnMessage);
