@@ -1,2 +1,2 @@
-cd src/database
+cd database
 sls deploy --stage dev --verbose
