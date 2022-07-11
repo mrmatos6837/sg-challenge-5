@@ -46,3 +46,21 @@ Todo:
 - Write unit tests for the remaining functions
 
 Time spent: 1h40m
+
+### Third day
+
+Progression:
+
+- Separated api from database on different serverless.yml according to best practices
+- Configured new CI/CD pipeline to deploy only when applications that had any changes
+- Created helper scripts
+- Created Postman collection
+- Created Postman Monitor integration tests
+- Improved project folder structure
+- Improved Lambdas packaging
+- Clean up
+- Loom videos
+
+Time spent: 1h20m + lunch break + 1h10m
+
+### Total time spent: 6h30m
