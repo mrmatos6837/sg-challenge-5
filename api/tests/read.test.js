@@ -6,5 +6,5 @@ test("GET resquest on unexistent item", async () => {
   const data = JSON.parse(response.body);
   console.log(data);
   expect(response.statusCode).toBe(200);
-  expect(data.sk).toBe("abc");
+  expect(data.sk).toBe("abcd");
 });
