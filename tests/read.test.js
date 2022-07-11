@@ -1,4 +1,4 @@
-const { handler } = require("../src/read");
+const { handler } = require("../src/api/handlers/read");
 const getRequest = require("./payloads/getRequest");
 
 test("test GET request", async () => {
