@@ -11,6 +11,9 @@
   },
   "scripts": {
     "local": "serverless offline",
-    "test": "jest"
+    "test": "jest",
+    "deploy-api": "sh ./deploy-api.sh",
+    "deploy-db": "sh ./deploy-db.sh",
+    "deploy-everything": "npm run deploy-db && npm run deploy-api"
   }
 }

@@ -1,0 +1,40 @@
+org: mrmatos6837
+app: sg-challenge-5
+service: database
+frameworkVersion: "3"
+
+custom:
+  tableName: "sgc5-table-${sls:stage}"
+
+provider:
+  name: aws
+
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+
+resources:
+  Resources:
+    db:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: pk
+            AttributeType: S
+          - AttributeName: sk
+            AttributeType: S
+        KeySchema:
+          - AttributeName: pk
+            KeyType: HASH
+          - AttributeName: sk
+            KeyType: RANGE
+        TableName: ${self:custom.tableName}
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+outputs:
+  arn:
+    Fn::GetAtt:
+      - db
+      - Arn
+  name: ${self:app}-${self:custom.tableName}
